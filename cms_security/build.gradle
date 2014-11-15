@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+version = '1.0'
+
+ext.springGroup = 'org.springframework'
+ext.springVersion = '3.2.8.RELEASE'
+def localMavenRepo = 'file://E:/maven/repo'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Cms Security', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+	mavenRepo url: localMavenRepo
+}
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile "$springGroup:spring-core:$springVersion"
+	compile "org.hibernate:hibernate-annotations:3.5.6-Final"
+	compile "org.hibernate:hibernate-validator:4.3.1.Final"
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}

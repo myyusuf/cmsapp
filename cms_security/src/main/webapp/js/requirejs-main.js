@@ -6,8 +6,11 @@
         "jqxpanel": "jqwidgets/jqxpanel",
         "jqxscrollbar": "jqwidgets/jqxscrollbar",
         "jqxtree": "jqwidgets/jqxtree",
+        "jqxexpander": "jqwidgets/jqxexpander",
+        "jqxsplitter": "jqwidgets/jqxsplitter",
         "demos": "demos"
     },
+    //waitSeconds: 60,
     shim: {
         "demos": {
             export: "$",
@@ -30,6 +33,14 @@
             deps: ['jQuery', "jqxcore"]
         },
         "jqxtree": {
+            export: "$",
+            deps: ['jQuery', "jqxcore"]
+        },
+        "jqxexpander": {
+            export: "$",
+            deps: ['jQuery', "jqxcore"]
+        },
+        "jqxsplitter": {
             export: "$",
             deps: ['jQuery', "jqxcore"]
         }

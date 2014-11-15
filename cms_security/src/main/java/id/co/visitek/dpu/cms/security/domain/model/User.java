@@ -12,7 +12,6 @@ package id.co.visitek.dpu.cms.security.domain.model;
 
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +23,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -79,9 +77,6 @@ public class User implements Serializable {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "CONTACT_ID")
 	private Contact contact;
-	
-	@Transient
-	private List<Long> rolesId;
 	
 	public Long getId() {
 		return id;
@@ -139,10 +134,6 @@ public class User implements Serializable {
 		this.contact = contact;
 	}
 
-	public void setRolesId(List<Long> rolesId) {
-		this.rolesId = rolesId;
-	}
-
 	public String getNotes() {
 		return notes;
 	}
@@ -196,8 +187,6 @@ public class User implements Serializable {
 		builder.append(notes);
 		builder.append(", contact=");
 		builder.append(contact);
-		builder.append(", rolesId=");
-		builder.append(rolesId);
 		builder.append("]");
 		return builder.toString();
 	}

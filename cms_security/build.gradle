@@ -1,6 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+apply plugin: 'war'
+//apply plugin: 'jetty'
+
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 version = '1.0'
@@ -8,6 +11,17 @@ version = '1.0'
 ext.springGroup = 'org.springframework'
 ext.springVersion = '3.2.8.RELEASE'
 def localMavenRepo = 'file://E:/maven/repo'
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.bmuschko:gradle-tomcat-plugin:2.0'
+	}
+}
+apply plugin: 'com.bmuschko.tomcat'
+
 
 jar {
     manifest {
@@ -17,15 +31,23 @@ jar {
 
 repositories {
     mavenCentral()
-	mavenRepo url: localMavenRepo
+	//mavenRepo url: localMavenRepo
 }
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-	compile "$springGroup:spring-core:$springVersion"
-	compile "org.hibernate:hibernate-annotations:3.5.6-Final"
-	compile "org.hibernate:hibernate-validator:4.3.1.Final"
+	compile "$springGroup:spring-core:$springVersion",
+	 		"org.hibernate:hibernate-annotations:3.5.6-Final",
+			"org.hibernate:hibernate-validator:4.3.1.Final"
     testCompile group: 'junit', name: 'junit', version: '4.+'
+	providedCompile 'javax.servlet:servlet-api:2.5'
+	
+	def tomcatVersion = '7.0.11'
+	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+		   "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+	tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+		exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+	}
 }
 
 test {
@@ -39,3 +61,28 @@ uploadArchives {
        }
     }
 }
+
+/*jettyRun {
+	httpPort = 9191
+	stopPort = 9999
+	stopKey = 'stopKey'
+	contextPath = 'todo'
+}*/
+
+tomcat {
+	httpPort = 9191
+	users {
+		user {
+			username = 'user1'
+			password = '123456'
+			roles = ['developers', 'admin']
+		}
+
+		user {
+			username = 'user2'
+			password = 'abcdef'
+			roles = ['manager']
+		}
+	}
+}
+

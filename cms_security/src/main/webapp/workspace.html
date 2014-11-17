@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title id="Description">RequireJS Integration</title>
+	<title id="Description">Complaint Management System</title>
 	<script type="text/javascript" data-main="js/requirejs-main" src="js/requirejs/require.js"></script>
 	<link type="text/css" rel="Stylesheet" href="resources/styles/jqx.base.css"/>
 	<link type="text/css" rel="Stylesheet" href="resources/styles/jqx.metro.css"/>
@@ -27,7 +27,7 @@
 <div style="width: 100%; height: 100%;">
 	<div id="header">
 		<div id="titleHeader" style="height: 20px; font: 11px arial; padding-top: 6px; padding-left: 6px; background-color: rgb(84, 88, 92); color: white;">
-			<span style="">Dinas PU DKI - Complaint Management System</span>
+			<span style="">Dinas PU DKI - CMS</span>
 		</div>
 
 		<div id='jqxMenu'>
@@ -115,7 +115,7 @@
 			<div>
 
 				<div style="border: none;" id="feedExpander" style="border-right: 0;">
-					<div class="jqx-hideborder">Menu</div>
+					<div class="jqx-hideborder">Modules</div>
 					<!-- <div class="jqx-hideborder jqx-hidescrollbars">
 						<div class="jqx-hideborder" id='jqxTree'>
 							<ul>
@@ -145,22 +145,56 @@
 					</div> -->
 
 
-					<div id="jqxNavigationBar">
+					<div id="jqxNavigationBar" style="">
 						<div>
 							<div style='margin-top: 2px;'>
 								<div style='float: left;'>
-									<img alt='Mail' src='resources/images/mailIcon.png'/></div>
+									<img alt='Mail' src='resources/images/applications-blue.png'/></div>
 								<div style='margin-left: 4px; float: left;'>
-									Mail
+									Application Settings
 								</div>
 							</div>
 						</div>
 						<div>
-							<ul>
-								<li><a href='#'>Contacts</a></li>
-								<li><a href='#'>Mails</a></li>
-								<li><a href='#'>Notes</a></li>
-							</ul>
+						
+							<div class="jqx-hideborder" id='jqxTree' style=''>
+								<ul>
+									<li item-expanded='true' id="t1">
+										<img style='float: left; margin-right: 5px;' src='resources/images/do-not-disturb-sign.png' /><span
+											item-title="true">Security Management</span>
+										<ul>
+											
+											<li>
+												<img style='float: left; margin-right: 5px;' src='resources/images/xfn-friend-met.png' /><span
+													item-title="true">User</span> </li>
+											<li>
+												<img style='float: left; margin-right: 5px;' src='resources/images/molecule.png' /><span
+													item-title="true">Group</span> </li>
+											<li>
+												<img style='float: left; margin-right: 5px;' src='resources/images/node-insert-next.png' /><span
+													item-title="true">Role</span> </li>
+										</ul>
+									</li>
+									
+									<li item-expanded='true' id="t1">
+										<img style='float: left; margin-right: 5px;' src='resources/images/database-insert.png' /><span
+											item-title="true">Master Data</span>
+										<ul>
+											
+											<li>
+												<img style='float: left; margin-right: 5px;' src='resources/images/folder.png' /><span
+													item-title="true">Posisi</span> </li>
+											<li>
+												<img style='float: left; margin-right: 5px;' src='resources/images/folder.png' /><span
+													item-title="true">Wilayah</span> </li>
+											<li>
+												<img style='float: left; margin-right: 5px;' src='resources/images/folder.png' /><span
+													item-title="true">Kategori</span> </li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							
 						</div>
 						<div>
 							<div style='margin-top: 2px;'>

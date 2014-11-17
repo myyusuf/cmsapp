@@ -26,7 +26,7 @@
             
             $("#jqxNavigationBar").jqxNavigationBar({ width: "100%", height: feedExpanderHeight(), expandMode: "singleFitHeight", theme: 'metro'});
             $('#jqxNavigationBar').css({marginLeft: "1px"});
-            $('#jqxTree').jqxTree({ height: '100%', width: '100%'});
+            $('#jqxTree').jqxTree({ height: '100%', width: '100%', theme: 'metro'});
             
             $("#jqxMenu").jqxMenu({ width: '100%', theme: 'metro'});
             $("#jqxMenu").css('visibility', 'visible');

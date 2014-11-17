@@ -37,6 +37,55 @@
             	$('#jqxNavigationBar').css({height: feedExpanderHeight()});
             });
             
+            //-------Grid-------
+            
+            var url = "service/security/users";
+            // prepare the data
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'code', type: 'string' },
+                    { name: 'name', type: 'string' }
+                ],
+                root: "users",
+                record: "user",
+                id: 'code',
+                url: url
+            };
+            var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+                if (value < 20) {
+                    return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+                }
+                else {
+                    return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
+                }
+            }
+            var dataAdapter = new $.jqx.dataAdapter(source, {
+                downloadComplete: function (data, status, xhr) { },
+                loadComplete: function (data) { },
+                loadError: function (xhr, status, error) { }
+            });
+            // initialize jqxGrid
+            $("#jqxgrid").jqxGrid(
+            {
+                width: 850,
+                source: dataAdapter,                
+                pageable: true,
+                autoheight: true,
+                sortable: true,
+                altrows: true,
+                enabletooltips: true,
+                editable: true,
+                selectionmode: 'multiplecellsadvanced',
+                columns: [
+                  { text: 'Code', datafield: 'code', width: 250 },
+                  { text: 'Name', datafield: 'name', width: 250 }
+                ]
+            });
+            
+            //------------------
+            
         });
     };
     return {

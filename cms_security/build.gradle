@@ -37,6 +37,11 @@ repositories {
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
 	compile "$springGroup:spring-core:$springVersion",
+			"$springGroup:spring-orm:$springVersion",
+			"$springGroup:spring-expression:$springVersion",
+			"$springGroup:spring-web:$springVersion",
+			"$springGroup:spring-webmvc:$springVersion",
+			"$springGroup:spring-test:$springVersion",
 	 		"org.hibernate:hibernate-annotations:3.5.6-Final",
 			"org.hibernate:hibernate-validator:4.3.1.Final"
 			

@@ -8,6 +8,8 @@
         "jqxtree": "jqwidgets/jqxtree",
         "jqxexpander": "jqwidgets/jqxexpander",
         "jqxsplitter": "jqwidgets/jqxsplitter",
+        "jqxmenu": "jqwidgets/jqxmenu",
+        "jqxnavigationbar": "jqwidgets/jqxnavigationbar",
         "demos": "demos"
     },
     //waitSeconds: 60,
@@ -41,6 +43,14 @@
             deps: ['jQuery', "jqxcore"]
         },
         "jqxsplitter": {
+            export: "$",
+            deps: ['jQuery', "jqxcore"]
+        },
+        "jqxmenu": {
+            export: "$",
+            deps: ['jQuery', "jqxcore"]
+        },
+        "jqxnavigationbar": {
             export: "$",
             deps: ['jQuery', "jqxcore"]
         }

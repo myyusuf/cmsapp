@@ -1,6 +1,6 @@
-﻿define(["jQuery", "demos", "jqxcore", "jqxbuttons", "jqxtree", "jqxpanel", "jqxscrollbar", "jqxexpander", 
+﻿define(["require", "jQuery", "demos", "jqxcore", "jqxbuttons", "jqxtree", "jqxpanel", "jqxscrollbar", "jqxexpander", 
         "jqxsplitter", "jqxmenu", "jqxnavigationbar", 
-        "jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "jqxlistbox", "jqxdropdownlist", "jqxgrid", "jqxdata"], function () {
+        "jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "jqxlistbox", "jqxdropdownlist", "jqxgrid", "jqxdata"], function (require) {
     var initialize = function () {
         $(document).ready(function () {
             //$('#jqxTree').jqxTree({ height: '300px', width: '300px' });
@@ -41,15 +41,16 @@
             
             //-------Grid-------
             
-            var url = "service/security/users";
-//            var url = "data.json";
-            // prepare the data
+           /* var url = "service/security/users";
+            
             var source =
             {
                 datatype: "json",
                 datafields: [
                     { name: 'username', type: 'string' },
-                    { name: 'firstName', type: 'string' }
+                    { name: 'firstName', type: 'string' },
+                    { name: 'lastName', type: 'string' },
+                    { name: 'email', type: 'string' }
                 ],
                 id: 'username',
                 beforeprocessing: function (data) {
@@ -85,11 +86,13 @@
                 sortable: true,
                 altrows: true,
                 enabletooltips: true,
-                editable: true,
-                selectionmode: 'multiplecellsadvanced',
+                editable: false,
+                selectionmode: 'multiplerows',
                 columns: [
-                  { text: 'Code', datafield: 'username', width: '50%' },
-                  { text: 'Name', datafield: 'firstName', width: '50%' }
+                  { text: 'Username', datafield: 'username', width: '25%' },
+                  { text: 'First Name', datafield: 'firstName', width: '25%' },
+                  { text: 'Last Name', datafield: 'lastName', width: '25%' },
+                  { text: 'Email', datafield: 'email', width: '25%' }
                 ],
             	theme: 'metro',
             	pagesizeoptions: ['5', '10', '20', '100'],
@@ -99,7 +102,14 @@
                 }
             });
             
-            $('#jqxgrid').css({marginLeft: "-1px", marginTop: "-1px"});
+            $('#jqxgrid').css({marginLeft: "-1px", marginTop: "-1px"});*/
+            require(['./app/security/userlist'], function (userList) {
+//            	var userList = require("userList");
+                var userGrid = userList.getElement();
+                
+                $('#feedUpperPanel').append(userGrid);
+            });
+            
             
             //------------------
             

@@ -78,7 +78,7 @@
                 height: '100%',
                 source: dataAdapter,                
                 pageable: true,
-                autoheight: true,
+                autoheight: false,
                 sortable: true,
                 altrows: true,
                 enabletooltips: true,

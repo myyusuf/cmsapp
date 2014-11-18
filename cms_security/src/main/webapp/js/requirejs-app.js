@@ -42,6 +42,7 @@
             //-------Grid-------
             
             var url = "service/security/users";
+//            var url = "data.json";
             // prepare the data
             var source =
             {
@@ -50,9 +51,8 @@
                     { name: 'username', type: 'string' },
                     { name: 'firstName', type: 'string' }
                 ],
-                root: "data",
-                record: "user",
-                id: 'code',
+                
+                id: 'username',
                 url: url
             };
             var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {

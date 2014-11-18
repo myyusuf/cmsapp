@@ -1,4 +1,6 @@
-﻿define(["jQuery", "demos", "jqxcore", "jqxbuttons", "jqxtree", "jqxpanel", "jqxscrollbar", "jqxexpander", "jqxsplitter", "jqxmenu", "jqxnavigationbar"], function () {
+﻿define(["jQuery", "demos", "jqxcore", "jqxbuttons", "jqxtree", "jqxpanel", "jqxscrollbar", "jqxexpander", 
+        "jqxsplitter", "jqxmenu", "jqxnavigationbar", 
+        "jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "jqxlistbox", "jqxdropdownlist", "jqxgrid", "jqxdata"], function () {
     var initialize = function () {
         $(document).ready(function () {
             //$('#jqxTree').jqxTree({ height: '300px', width: '300px' });
@@ -45,10 +47,10 @@
             {
                 datatype: "json",
                 datafields: [
-                    { name: 'code', type: 'string' },
-                    { name: 'name', type: 'string' }
+                    { name: 'username', type: 'string' },
+                    { name: 'firstName', type: 'string' }
                 ],
-                root: "users",
+                root: "data",
                 record: "user",
                 id: 'code',
                 url: url
@@ -62,14 +64,18 @@
                 }
             }
             var dataAdapter = new $.jqx.dataAdapter(source, {
-                downloadComplete: function (data, status, xhr) { },
-                loadComplete: function (data) { },
+                downloadComplete: function (data, status, xhr) { 
+                },
+                loadComplete: function (data) { 
+                	console.log('data : ' + data)
+                },
                 loadError: function (xhr, status, error) { }
             });
             // initialize jqxGrid
             $("#jqxgrid").jqxGrid(
             {
-                width: 850,
+                width: '100%',
+                height: '100%',
                 source: dataAdapter,                
                 pageable: true,
                 autoheight: true,
@@ -79,10 +85,13 @@
                 editable: true,
                 selectionmode: 'multiplecellsadvanced',
                 columns: [
-                  { text: 'Code', datafield: 'code', width: 250 },
-                  { text: 'Name', datafield: 'name', width: 250 }
-                ]
+                  { text: 'Code', datafield: 'username', width: '50%' },
+                  { text: 'Name', datafield: 'firstName', width: '50%' }
+                ],
+            	theme: 'metro'
             });
+            
+            $('#jqxgrid').css({marginLeft: "-1px", marginTop: "-1px"});
             
             //------------------
             

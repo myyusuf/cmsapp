@@ -51,8 +51,10 @@
                     { name: 'username', type: 'string' },
                     { name: 'firstName', type: 'string' }
                 ],
-                
                 id: 'username',
+                beforeprocessing: function (data) {
+                    source.totalrecords = data.num;
+                },
                 url: url
             };
             var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
@@ -67,7 +69,8 @@
                 downloadComplete: function (data, status, xhr) { 
                 },
                 loadComplete: function (data) { 
-                	console.log('data : ' + data)
+                	//console.log('data : ' + data);
+                	
                 },
                 loadError: function (xhr, status, error) { }
             });
@@ -88,7 +91,12 @@
                   { text: 'Code', datafield: 'username', width: '50%' },
                   { text: 'Name', datafield: 'firstName', width: '50%' }
                 ],
-            	theme: 'metro'
+            	theme: 'metro',
+            	pagesizeoptions: ['5', '10', '20', '100'],
+            	virtualmode: true,
+            	rendergridrows: function () {
+                    return dataAdapter.records;
+                }
             });
             
             $('#jqxgrid').css({marginLeft: "-1px", marginTop: "-1px"});

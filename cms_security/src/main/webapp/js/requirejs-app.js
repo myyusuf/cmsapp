@@ -2,6 +2,7 @@
         "jqxsplitter", "jqxmenu", "jqxnavigationbar", 
         "jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "jqxlistbox", "jqxdropdownlist", "jqxgrid", "jqxdata"], function (require) {
     var initialize = function () {
+    	
         $(document).ready(function () {
             //$('#jqxTree').jqxTree({ height: '300px', width: '300px' });
             //$('#jqxTree').css("visibility", "visible");
@@ -18,6 +19,7 @@
         	$('#mainSplitter').jqxSplitter({  width: '100%', height: contentHeight(), panels: [{ size: '15%', min: 100 }, {size: '85%', min: 200}], theme: 'metro' });
             $('#contentSplitter').jqxSplitter({ width: '100%', height: '100%',  orientation: 'horizontal', 
             	panels: [{ size: '70%', min: 100, collapsible: false }, { min: 100, collapsible: true}], theme: 'metro' });
+            $('#contentSplitter').css({margin : "0px"})
         
             $("#feedExpander").jqxExpander({toggleMode: 'none', showArrow: false, width: "100%", height: feedExpanderHeight(), 
             	theme: 'arctic',
@@ -25,6 +27,14 @@
 //                	$('#jqxTree').jqxTree({ height: '100%', width: '100%'});
                 }
             });
+            
+//            $("#contentExpander").jqxExpander({toggleMode: 'none', showArrow: false, width: "100%", height: '100%', 
+//            	theme: 'arctic',
+//            	initContent: function () {
+//                }
+//            });
+            
+            $("#contentExpander").css({overflow: "hidden", marginTop: "0px", marginBottom: "0px"});
             
             $("#jqxNavigationBar").jqxNavigationBar({ width: "100%", height: feedExpanderHeight(), expandMode: "singleFitHeight", theme: 'metro'});
             $('#jqxNavigationBar').css({marginLeft: "1px"});
@@ -41,7 +51,7 @@
             
             //-------Grid-------
             
-           /* var url = "service/security/users";
+            /*var url = "service/security/users";
             
             var source =
             {
@@ -103,11 +113,10 @@
             });
             
             $('#jqxgrid').css({marginLeft: "-1px", marginTop: "-1px"});*/
-            require(['./app/security/userlist'], function (userList) {
-//            	var userList = require("userList");
-                var userGrid = userList.getElement();
-                
-                $('#feedUpperPanel').append(userGrid);
+            
+            
+            require(['./app/security/userlist'], function (UserList) {
+            	var test = new UserList($('#jqxgrid'));
             });
             
             

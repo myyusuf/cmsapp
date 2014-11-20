@@ -1,9 +1,10 @@
-define(["jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "jqxlistbox", "jqxdropdownlist", "jqxgrid", "jqxdata"], function () {
-	var UserList = function(){
+define(["jQuery", "demos", "jqxcore", "jqxbuttons", "jqxtree", "jqxpanel", "jqxscrollbar", "jqxexpander", 
+        "jqxsplitter", "jqxmenu", "jqxnavigationbar", 
+        "jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "jqxlistbox", "jqxdropdownlist", "jqxgrid", "jqxdata"], function () {
+	
+	var UserList = function(container){
 		
-		//-------Grid-------
-        
-        var url = "service/security/users";
+		var url = "service/security/users";
         
         var source =
         {
@@ -20,14 +21,7 @@ define(["jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "j
             },
             url: url
         };
-        var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
-            if (value < 20) {
-                return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
-            }
-            else {
-                return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
-            }
-        }
+        
         var dataAdapter = new $.jqx.dataAdapter(source, {
             downloadComplete: function (data, status, xhr) { 
             },
@@ -37,8 +31,8 @@ define(["jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "j
             },
             loadError: function (xhr, status, error) { }
         });
-        // initialize jqxGrid
-        var gridContainer = $('<div></div>').jqxGrid(
+        
+        container.jqxGrid(
         {
             width: '100%',
             height: '100%',
@@ -64,17 +58,12 @@ define(["jqxgrid.pager", "jqxgrid.sort", "jqxgrid.edit", "jqxgrid.selection", "j
             }
         });
         
-        gridContainer.css({marginLeft: "-1px", marginTop: "-1px"});
-        
-        this.localElement = gridContainer;
-        
-        this.getElement = function(){
-        	return this.localElement;
-        }
+        container.css({marginLeft: "-1px", marginTop: "-1px"});
         
         //------------------
 	}
 
-    return new UserList();
+    return UserList;
+    
 });
 

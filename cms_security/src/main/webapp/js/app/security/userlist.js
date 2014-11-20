@@ -58,7 +58,7 @@ define(["jQuery", "demos", "jqxcore", "jqxbuttons", "jqxtree", "jqxpanel", "jqxs
             }
         });
         
-        container.css({marginLeft: "-1px"});
+        container.css({marginLeft: "-2px", borderTop: "0px", borderBottom: "0px", marginTop: "-1px"});
         
         //------------------
 	}

@@ -50,16 +50,48 @@
             });
             
             
-            $('#jqxTabs').jqxTabs({ width: '100%', height: '100%', position: 'top', showCloseButtons: true, scrollPosition: 'both', theme: 'metro'});
+            /*$('#jqxTabs').jqxTabs({ width: '100%', height: '100%', position: 'top', showCloseButtons: true, scrollPosition: 'both', theme: 'metro'});
             $('#jqxTabs').css({marginLeft: "-1px", marginTop: "0px", borderBottom: "0px", borderTop: "0px"});
             
             require(['./app/security/userlist'], function (UserList) {
             	var test = new UserList($('#jqxGrid'));
             	$('#jqxGrid').css({height: "100px"});
-            });
+            });*/
             
             
             //------------------
+            
+            //--Tiny pubsub cowboy ben
+            
+            var o = $({});
+            
+            $.subscribe = function() {
+            	o.on.apply(o, arguments);
+            };
+             
+            $.unsubscribe = function() {
+            	o.off.apply(o, arguments);
+            };
+             
+            $.publish = function() {
+            	o.trigger.apply(o, arguments);
+            };
+              
+            
+            //------------------------
+            
+            var registerMenu = function(){
+            	$("#userListMenu").click(function(){
+            		console.log("click..");
+            		$.publish("viewUserListEvent", {name: "waw"});
+            	});
+            }
+            
+            registerMenu();
+            
+            require(['./app/controller/main/Main'], function (MainController) {
+            	var mainController = new MainController($("#contentPanel"));
+            });
             
         });
     };

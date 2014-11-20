@@ -2,6 +2,7 @@
     paths: {
         "jQuery": "jquery/jquery-1.11.1.min",
         "jqxcore": "jqwidgets/jqxcore",
+        "jqxtabs": "jqwidgets/jqxtabs",
         "jqxbuttons": "jqwidgets/jqxbuttons",
         "jqxpanel": "jqwidgets/jqxpanel",
         "jqxscrollbar": "jqwidgets/jqxscrollbar",
@@ -30,6 +31,10 @@
         "jqxcore": {
             export: "$",
             deps: ['jQuery']
+        },
+        "jqxtabs": {
+            export: "$",
+            deps: ['jQuery', "jqxcore"]
         },
         "jqxbuttons": {
             export: "$",

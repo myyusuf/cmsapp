@@ -16,10 +16,17 @@ define(["jQuery", "jqxcore", "jqxtabs",], function () {
 			tabs.jqxTabs('addLast', 'User List' , 'userListGrid');
 			tabs.jqxTabs('setContentAt', 1 , '<div id="userListGrid">User Grid : [Loading]</div>');
 			
-			var hello = $('#userListGrid');
+			
 			require(['./app/security/userlist'], function (UserList) {
+				var hello = $('#userListGrid').parent();
             	var test = new UserList(hello);
+            	tabs.on('removed', function (event) {
+            		console.log('removed...');
+//            		$('#userListGrid').remove();
+            	}); 
             });
+			
+			
 		});
 	};
 	
